@@ -1,15 +1,15 @@
 {
-  "name": "example-node-server",
-  "version": "1.0.0",
-  "description": "Example Node Server w/ Babel",
-  "main": "lib/index.js",
+  "name": "natural-language-backend",
+  "version": "0.0.1",
+  "description": "Backend side for natural language project",
+  "main": "src/app.js",
   "scripts": {
     "start": "nodemon --watch src src/app.js --exec babel-node --presets es2015,stage-2",
     "build": "babel lib -d dist",
     "serve": "node dist/index.js",
     "test": "mocha --compilers js:babel-register"
   },
-  "author": "Mariano Furriel <marianfurriel@gmail.com>",
+  "author": "Gabriel Rodriguez and Mariano Furriel",
   "license": "ISC",
   "devDependencies": {
     "babel-cli": "^6.11.4",
