@@ -3,7 +3,6 @@ import { natural } from '../utils/examples';
 
 const getPseudocodeFromNatural = (req, res) => {
 	const { text } = req.body;
-	console.log(text);
 	const pseudocode = prose.compileToPseudocode(text);
 	res.send(pseudocode);
 };
@@ -11,7 +10,6 @@ const getPseudocodeFromNatural = (req, res) => {
 // Remove this later
 const getPseudocodeExample = (req, res) => {
 	const pseudocode = prose.compileToPseudocode(natural.toString());
-	console.log(natural);
 	res.send(pseudocode);
 };
 
