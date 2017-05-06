@@ -23,6 +23,10 @@
     "body-parser": "^1.17.1",
     "express": "^4.15.2",
     "morgan": "^1.8.1",
-    "prettyjson": "^1.2.1"
+    "prettyjson": "^1.2.1",
+    "prose-js": "0.0.7",
+    "swagger-tools": "^0.10.1",
+    "swagger-ui": "^3.0.9",
+    "yamljs": "^0.2.10"
   }
 }

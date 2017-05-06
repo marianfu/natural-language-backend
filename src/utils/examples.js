@@ -1,12 +1,5 @@
 // Exercises response example
 export const exercises = {
-  posts: [
-    { id: 1, title: "json-server", author: "typicode" }
-  ],
-  comments: [
-    { id: 1, body: "some comment", postId: 1 }
-  ],
-  profile: { name: "typicode" },
   lessons: [
     {
       id: 1,
@@ -34,3 +27,6 @@ export const exercises = {
     }
   ]
 };
+
+// Natural language example
+export const natural = `La variable números es una lista. Además, i es i + 1.`;

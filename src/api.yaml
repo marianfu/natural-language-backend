@@ -1,0 +1,61 @@
+# [START swagger]
+swagger: "2.0"
+info:
+  description: "Backend endpoints examples"
+  title: "Endpoints"
+  version: "0.0.1"
+host: "localhost:3001"
+# [END swagger]
+basePath: "/"
+consumes:
+- "application/json"
+produces:
+- "application/json"
+schemes:
+- "http"
+paths:
+  "/exercises":
+    get:
+      description: "Returns the exercises list"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "Exercises list response"
+  "/exercises/{id}":
+    get:
+      description: "Returns an exercise based on a single ID"
+      operationId: "exerciseId"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "Exercise response"
+      parameters:
+      - description: "Exercise ID"
+        in: path
+        name: "id"
+        required: true
+        type: "integer" 
+  "/pseudocode":
+    post:
+      description: "Returns the pseudocode from the natural language"
+      operationId: "naturalText"
+      produces:
+      - "application/text"
+      responses:
+        200:
+          description: "Pseudocode response"
+      parameters:
+      - description: "Natural text"
+        in: "body"
+        name: "object"
+        required: true
+        schema:
+          $ref: "#/definitions/Pseudocode"
+definitions:  
+  Pseudocode:
+    type: "object"
+    properties:
+      text:
+        type: "string"
