@@ -1,7 +1,7 @@
 ## Getting Started
 Clone this repo
 ```sh
-git clone 
+git clone https://github.com/marianfu/natural-language-backend.git
 ```
 ### Start server:
 

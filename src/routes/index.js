@@ -1,3 +1,4 @@
 import exercises from './exercises';
+import home from './home'; 
 
-export { exercises };
+export { home, exercises };

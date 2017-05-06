@@ -1,12 +1,13 @@
 import express from 'express';
 import morgan from 'morgan';
 
-import { exercises } from './routes';
+import { home, exercises } from './routes';
 
 // App
 const app = express();
 const PORT = 3001;
 const logger = morgan('tiny');
+
 
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT} ...`);
@@ -19,5 +20,6 @@ app.set('json spaces', 2);
 app.use(logger);
 
 // Routes
+app.use('/', home);
 app.use('/exercises', exercises);
 
