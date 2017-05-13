@@ -29,6 +29,6 @@ swaggerTools.initializeMiddleware(swaggerDoc, (middleware) => {
 
 // Routes
 app.use('/', home);
-app.use('/exercises', exercises);
-app.use('/pseudocode', pseudocode)
+app.use('/api/exercises', exercises);
+app.use('/api/pseudocode', pseudocode)
 

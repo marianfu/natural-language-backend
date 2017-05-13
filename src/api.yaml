@@ -4,9 +4,9 @@ info:
   description: "Backend endpoints examples"
   title: "Endpoints"
   version: "0.0.1"
-host: "localhost:3001"
+host: "localhost:8080"
 # [END swagger]
-basePath: "/"
+basePath: "/api"
 consumes:
 - "application/json"
 produces:
