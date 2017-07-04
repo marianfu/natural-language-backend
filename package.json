@@ -23,9 +23,11 @@
     "babel-preset-stage-2": "^6.24.1",
     "body-parser": "^1.17.1",
     "express": "^4.15.2",
+    "lodash": "^4.17.4",
     "morgan": "^1.8.1",
     "prettyjson": "^1.2.1",
     "prose-js": "0.0.8",
+    "socket.io": "^2.0.3",
     "swagger-tools": "^0.10.1",
     "swagger-ui": "^3.0.9",
     "yamljs": "^0.2.10"
