@@ -5,6 +5,7 @@ import bodyParser from 'body-parser';
 import morgan from 'morgan';
 import swaggerTools from 'swagger-tools';
 import YAML from 'yamljs';
+import Student from './model/classes/student';
 
 import { home, exercises, pseudocode } from './routes';
 import { addSocketHandlers } from './websocket/handler';
@@ -40,4 +41,9 @@ app.use('/api/pseudocode', pseudocode);
 
 // Websocket handlers
 addSocketHandlers(io);
+
+console.log(new Student({
+	firstName: 'Gabriel',
+	lastName: 'Rodriguez'
+}).save());
 
