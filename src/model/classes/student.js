@@ -1,14 +1,40 @@
 import Submission from './submission';
 import BaseModel from './baseModel';
 
-const Student = BaseModel.extend({
+const StudentModel = BaseModel.extend({
 	tableName: 'students',
-	submissions: function() {
+
+	submissions: () => {
 		return this.hasMany(Submission);
+	},
+
+	submit: (exercise, solution) => {
+		let submission = new Submission({exercise, solution});
+		this.submissions.push(submission);
+		return submission;
 	}
 });
 
+class Student {
+
+	constructor(firstName, lastName) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.submissions = [];
+		this.model = new StudentModel({firstName, lastName});
+	}
+
+	// Transient methods
+	submit(exercise, solution) {
+		let submission = new Submission(exercise, solution);
+		this.submissions.push(submission);
+		return submission;
+	}
+
+}
+
 export default Student;
+export { StudentModel };
 
 // // import User from './user';
 // import { Model } from 'objection';

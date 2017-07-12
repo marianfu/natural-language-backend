@@ -6,6 +6,7 @@ import morgan from 'morgan';
 import swaggerTools from 'swagger-tools';
 import YAML from 'yamljs';
 import Student from './model/classes/student';
+import BasicDao from './model/persistence/basicDao';
 
 import { home, exercises, pseudocode } from './routes';
 import { addSocketHandlers } from './websocket/handler';
@@ -42,8 +43,12 @@ app.use('/api/pseudocode', pseudocode);
 // Websocket handlers
 addSocketHandlers(io);
 
-console.log(new Student({
-	firstName: 'Gabriel',
-	lastName: 'Rodriguez'
-}).save());
+const basicDao = new BasicDao();
+
+basicDao.save(
+	new Student('Gabriel','Rodriguez'),
+	(student) => {
+		console.log(student);
+	}
+);
 
