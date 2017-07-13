@@ -1,70 +1,61 @@
 import BaseModel from './baseModel';
-import Professor from './professor';
-import Student from './student';
-import Exercise from './exercise';
+import { ProfessorModel } from './professor';
+import { StudentModel } from './student';
+import { ExerciseModel } from './exercise';
 
-const Classroom = BaseModel.extend({
+const ClassroomModel = BaseModel.extend({
 	tableName: 'classrooms',
-	professor: function() {
-		return this.hasOne(Professor);
+	professor: () => {
+		return this.hasOne(ProfessorModel);
 	},
-	students: function() {
-		return this.hasMany(Student);
+	students: () => {
+		return this.hasMany(StudentModel);
 	},
-	exercises: function() {
-		return this.hasMany(Exercise);
+	exercises: () => {
+		return this.hasMany(ExerciseModel);
 	}
 });
 
+class Classroom {
+
+	constructor(name, professor) {
+		this.name = name;
+		this.professor = professor;
+		this.students = [];
+		this.exercises = [];
+		this.model = new ClassroomModel({name, professor});
+	}
+
+	populate(data) {
+		let {name, professor, students, exercises } = data;
+		
+		if (name) {
+			this.name = name;
+		}
+		if (professor) {
+			this.professor = professor();
+		}
+		if (students) {
+			this.students = students();
+		}
+		if (exercises) {
+			this.exercises = exercises();
+		}
+	}
+
+	addStudent(student) {
+		this.students.push(student);
+	}
+
+	addExercise(exercise) {
+		this.exercises.push(exercise);
+	}
+
+	toString() {
+		return this.name + '(Profesor ' + this.professor.lastName + ', ' + this.students.length + ' alumnos)'
+	}
+
+}
+
 export default Classroom;
-
-
-// import { Model } from 'objection';
-// import Professor from './professor';
-// import Student from './student';
-// import Exercise from './exercise';
-
-// class Classroom extends Model {
-	
-// 	//	Table name
-// 	get tableName() {
-// 		return 'classrooms';
-// 	}
-
-// 	constructor(name, professor) {
-// 		super();
-// 		this.name = name;
-// 		this.professor = professor;
-// 		this.students = [];
-// 		this.exercises = [];
-// 	}
-
-// 	// Table relations
-// 	professor() {
-// 		return this.hasOne(Professor);
-// 	}
-
-// 	students() {
-// 		return this.hasMany(Student);
-// 	}
-
-// 	exercises() {
-// 		return this.hasMany(Exercise);
-// 	}
-
-// 	// Transient methods
-// 	addStudent(student) {
-// 		this.students.push(student);
-// 	}
-
-// 	addExercise(exercise) {
-// 		this.exercises.push(exercise);
-// 	}
-
-// 	toString() {
-// 		return this.name + '(Profesor ' + this.professor.lastName + ', ' + this.students.length + ' alumnos)'
-// 	}
-
-// }
-
-// export default Classroom;
+export { ClassroomModel };

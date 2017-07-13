@@ -1,53 +1,64 @@
 import BaseModel from './baseModel';
-import Observation from './observation';
+import { ObservationModel } from './observation';
+import { ExerciseModel } from './exercise';
 
-const Submission = BaseModel.extend({
+const SubmissionModel = BaseModel.extend({
 	tableName: 'submissions',
-	observations: function() {
-		return this.hasMany(Observation);
+	exercise: () => {
+		return this.hasOne(ExerciseModel);
+	},
+	observations: () => {
+		return this.hasMany(ObservationModel);
 	}
 });
 
-export default Submission;
+class Submission {
 
-// import { Model } from 'objection';
-// import Observation from './observation';
-
-// class Submission extends Model {
-
-// 	//	Table name
-// 	get tableName() {
-// 		return 'submissions';
-// 	}
+	//	Table name
+	get tableName() {
+		return 'submissions';
+	}
 	
-// 	constructor(exercise, solution) {
-// 		super();
-// 		this.exercise = exercise;
-// 		this.solution = solution;
-// 		this.approved = false;
-// 		this.observations = [];
-// 	}
+	constructor(exercise, solution) {
+		this.exercise = exercise;
+		this.solution = solution;
+		this.approved = false;
+		this.observations = [];
+		this.model = new ObservationModel({exercise, solution, approved});
+	}
 
-// 	// Table relations
-// 	observations() {
-// 		return this.hasMany(Observation);
-// 	}
+	populate(data) {
+		let { exercise, solution, approved, observations } = data;
+		
+		if (exercise) {
+			this.exercise = exercise();
+		}
+		if (solution) {
+			this.solution = solution();
+		}
+		if (approved) {
+			this.approved = approved;
+		}
+		if (observations) {
+			this.observations = observations();
+		}
+	}
 
-// 	// Transient methods
-// 	approve() {
-// 		this.approved = true;
-// 	}
+	approve() {
+		this.approved = true;
+	}
 
-// 	observe(professor, description) {
-// 		let observation = new Observation(professor, description);
-// 		this.observations.push(observation);
-// 		return observation;
-// 	}
+	observe(professor, description) {
+		let observation = new Observation(professor, description);
+		this.observations.push(observation);
+		return observation;
+	}
 
-// 	toString() {
-// 		return description;
-// 	}
+	toString() {
+		return description;
+	}
 
-// }
+}
 
-// export default Submission;
+export default Submission;
+export { SubmissionModel };

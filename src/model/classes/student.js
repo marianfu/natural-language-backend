@@ -1,30 +1,25 @@
+import User from './user';
 import Submission from './submission';
 import BaseModel from './baseModel';
 
 const StudentModel = BaseModel.extend({
 	tableName: 'students',
-
 	submissions: () => {
 		return this.hasMany(Submission);
-	},
-
-	submit: (exercise, solution) => {
-		let submission = new Submission({exercise, solution});
-		this.submissions.push(submission);
-		return submission;
 	}
 });
 
-class Student {
+class Student extends User {
 
 	constructor(firstName, lastName) {
-		this.firstName = firstName;
-		this.lastName = lastName;
+		super('STUDENT', firstName, lastName, new StudentModel({firstName, lastName}));
 		this.submissions = [];
-		this.model = new StudentModel({firstName, lastName});
 	}
 
-	// Transient methods
+	static dbModel() {
+		return StudentModel;
+	}
+
 	submit(exercise, solution) {
 		let submission = new Submission(exercise, solution);
 		this.submissions.push(submission);

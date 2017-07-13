@@ -1,17 +1,37 @@
-// import { Model } from 'objection';
+class User {
 
-// class User extends Model {
+	constructor(role, fName, lName, model) {
+		this.role = role;
+		this.firstName = fName;
+		this.lastName = lName;
+		this.model = model;
+	}
 
-// 	constructor(role, firstName, lastName) {
-// 		super();
-// 		this.role = role;
-// 		this.firstName = firstName;
-// 		this.lastName = lastName;
-// 	}
+	populate(data) {
+		let {role, firstName, lastName} = data;
+		
+		if (role) {
+			this.role = role;
+		}
+		if (firstName) {
+			this.firstName = firstName;
+		}		
+		if (lastName) {
+			this.lastName = lastName;
+		}
+	}
 
-// 	toString() {
-// 		return this.firstName + ' ' + this.firstName + '(' + this.role + ')';
-// 	}
-// }
+	// get firstName() {
+	// 	return model.get('firstName');
+	// }
 
-// export default User;
+	// get lastName() {
+	// 	return model.get('lastName');
+	// }
+
+	toString() {
+		return this.firstName + ' ' + this.firstName + '(' + this.role + ')';
+	}
+}
+
+export default User;

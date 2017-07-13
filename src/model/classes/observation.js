@@ -1,40 +1,37 @@
 import BaseModel from './baseModel';
-import Professor from './professor';
+import { ProfessorModel } from './professor';
 
-const Observation = BaseModel.extend({
+const ObservationModel = BaseModel.extend({
 	tableName: 'observations',
-	professor: function() {
-		return this.hasOne(Professor);
+	professor: () => {
+		return this.hasOne(ProfessorModel);
 	}
 });
 
+class Observation {
+
+	constructor(professor, description) {
+		this.professor = professor;
+		this.description = description;
+		this.model = new ObservationModel({professor, description});
+	}
+
+	populate(data) {
+		let { professor, description } = data;
+		
+		if (professor) {
+			this.professor = professor();
+		}
+		if (description) {
+			this.description = description;
+		}
+	}
+
+	toString() {
+		return description;
+	}
+
+}
+
 export default Observation;
-
-// import { Model } from 'objection';
-// import Professor from './professor';
-
-// class Observation extends Model {
-	
-// 	//	Table name
-// 	get tableName() {
-// 		return 'observations';
-// 	}
-
-// 	constructor(professor, description) {
-// 		super();
-// 		this.professor = professor;
-// 		this.description = description;
-// 	}
-
-// 	// Table relations
-// 	professor() {
-// 		return this.hasOne(Professor);
-// 	}
-
-// 	// Transient methods
-// 	toString() {
-// 		return description;
-// 	}
-// }
-
-// export default Observation;
+export { ObservationModel };

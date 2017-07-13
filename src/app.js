@@ -45,10 +45,7 @@ addSocketHandlers(io);
 
 const basicDao = new BasicDao();
 
-basicDao.save(
-	new Student('Gabriel','Rodriguez'),
-	(student) => {
-		console.log(student);
-	}
-);
+basicDao.fetch(Student, null, function(obj) {
+	console.log(obj);
+});
 
