@@ -5,13 +5,13 @@ import { ExerciseModel } from './exercise';
 
 const ClassroomModel = BaseModel.extend({
 	tableName: 'classrooms',
-	professor: () => {
+	professor: function() {
 		return this.hasOne(ProfessorModel);
 	},
-	students: () => {
+	students: function() {
 		return this.hasMany(StudentModel);
 	},
-	exercises: () => {
+	exercises: function() {
 		return this.hasMany(ExerciseModel);
 	}
 });
@@ -23,12 +23,18 @@ class Classroom {
 		this.professor = professor;
 		this.students = [];
 		this.exercises = [];
-		this.model = new ClassroomModel({name, professor});
+		this.model = new ClassroomModel({
+			name: name,
+			idProfessor: professor.id
+		});
 	}
 
 	populate(data) {
-		let {name, professor, students, exercises } = data;
+		let { id, name, professor, students, exercises } = data;
 		
+		if (id) {
+			this.id = id;
+		}
 		if (name) {
 			this.name = name;
 		}

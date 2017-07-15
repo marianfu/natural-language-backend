@@ -6,20 +6,34 @@ const ExerciseModel = BaseModel.extend({
 
 class Exercise {
 
-	constructor(description, result) {
+	constructor(classroom, name, description, result, level) {
+		this.name = name;
 		this.description = description;
 		this.result = result;
-		this.model = new ExerciseModel({description, result});
+		this.level = level;
+		this.model = new ExerciseModel({
+			name: name,
+			description: description,
+			result: result,
+			level: level,
+			idClassroom: classroom.id
+		});
 	}
 
 	populate(data) {
-		let { description, result } = data;
+		let { name, description, result, level } = data;
 		
+		if (name) {
+			this.name = name;
+		}
 		if (description) {
 			this.description = description;
 		}
 		if (result) {
 			this.result = result;
+		}
+		if (level) {
+			this.level = level;
 		}
 	}
 

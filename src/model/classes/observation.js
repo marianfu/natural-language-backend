@@ -3,7 +3,7 @@ import { ProfessorModel } from './professor';
 
 const ObservationModel = BaseModel.extend({
 	tableName: 'observations',
-	professor: () => {
+	professor: function() {
 		return this.hasOne(ProfessorModel);
 	}
 });

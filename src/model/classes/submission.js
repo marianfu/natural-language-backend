@@ -4,10 +4,10 @@ import { ExerciseModel } from './exercise';
 
 const SubmissionModel = BaseModel.extend({
 	tableName: 'submissions',
-	exercise: () => {
+	exercise: function() {
 		return this.hasOne(ExerciseModel);
 	},
-	observations: () => {
+	observations: function() {
 		return this.hasMany(ObservationModel);
 	}
 });
@@ -24,7 +24,7 @@ class Submission {
 		this.solution = solution;
 		this.approved = false;
 		this.observations = [];
-		this.model = new ObservationModel({exercise, solution, approved});
+		this.model = new SubmissionModel({exercise, solution});
 	}
 
 	populate(data) {

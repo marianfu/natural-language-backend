@@ -2,17 +2,26 @@ import ModelProxy from '../classes/modelProxy';
 
 class BasicDao {
 
-	save(obj, callback) {
-		obj.model.save().then((model) => {
-			obj.populate(model.attributes);
+	save(obj) {
+		const saveOne = (obj) => {
+			return obj.model.save().then((model) => {
+				obj.populate(model.attributes);
+				console.log('Object saved: ' + JSON.stringify(obj));
+			});
+		}
 
-			if (callback) {
-				callback(obj);
+		if (Array.isArray(obj)) {
+			let promises = [];
+			for (let o of obj) {
+				promises.push(saveOne(o));
 			}
-		});
+			return Promise.all(promises);
+		} else {
+			return saveOne(obj);
+		}
 	}
 
-	fetch(clazz, query, callback) {
+	fetch(clazz, query) {
 		let modelQuery = clazz.dbModel();
 
 		if (query) {
@@ -33,17 +42,14 @@ class BasicDao {
 			modelQuery = modelQuery.forge();
 		}
 
-		modelQuery.fetch().then((model) => {
+		return modelQuery.fetch().then((model) => {
 			var obj = new clazz();
 			obj.populate(model.attributes);
-			if (callback) {
-				callback(obj);
-			}
 		});
 	}
 
 	remove(obj, callback) {
-		obj.model.destroy().then(callback);
+		return obj.model.destroy();
 	}
 
 }

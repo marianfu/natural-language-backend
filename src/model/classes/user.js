@@ -1,15 +1,18 @@
 class User {
 
 	constructor(role, fName, lName, model) {
-		this.role = role;
+		// this.role = role;
 		this.firstName = fName;
 		this.lastName = lName;
 		this.model = model;
 	}
 
 	populate(data) {
-		let {role, firstName, lastName} = data;
+		let {id, role, firstName, lastName} = data;
 		
+		if (id) {
+			this.id = id;
+		}
 		if (role) {
 			this.role = role;
 		}

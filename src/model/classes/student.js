@@ -4,7 +4,7 @@ import BaseModel from './baseModel';
 
 const StudentModel = BaseModel.extend({
 	tableName: 'students',
-	submissions: () => {
+	submissions: function() {
 		return this.hasMany(Submission);
 	}
 });
@@ -18,12 +18,6 @@ class Student extends User {
 
 	static dbModel() {
 		return StudentModel;
-	}
-
-	submit(exercise, solution) {
-		let submission = new Submission(exercise, solution);
-		this.submissions.push(submission);
-		return submission;
 	}
 
 }
