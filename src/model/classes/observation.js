@@ -1,3 +1,4 @@
+import BaseClass from './baseClass';
 import BaseModel from './baseModel';
 import { ProfessorModel } from './professor';
 
@@ -8,28 +9,28 @@ const ObservationModel = BaseModel.extend({
 	}
 });
 
-class Observation {
+class Observation extends BaseClass {
 
 	constructor(professor, description) {
+		super();
 		this.professor = professor;
 		this.description = description;
-		this.model = new ObservationModel({professor, description});
+		this.model = new ObservationModel({
+			idProfessor: professor.id,
+			description: description
+		});
 	}
 
-	populate(data) {
-		let { professor, description } = data;
+	// populate(data) {
+	// 	let { professor, description } = data;
 		
-		if (professor) {
-			this.professor = professor();
-		}
-		if (description) {
-			this.description = description;
-		}
-	}
-
-	toString() {
-		return description;
-	}
+	// 	if (professor) {
+	// 		this.professor = professor();
+	// 	}
+	// 	if (description) {
+	// 		this.description = description;
+	// 	}
+	// }
 
 }
 

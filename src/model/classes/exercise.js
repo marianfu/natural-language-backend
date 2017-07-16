@@ -1,12 +1,14 @@
+import BaseClass from './baseClass';
 import BaseModel from './baseModel';
 
 const ExerciseModel = BaseModel.extend({
 	tableName: 'exercises'
 });
 
-class Exercise {
+class Exercise extends BaseClass {
 
 	constructor(classroom, name, description, result, level) {
+		super();
 		this.name = name;
 		this.description = description;
 		this.result = result;
@@ -20,26 +22,22 @@ class Exercise {
 		});
 	}
 
-	populate(data) {
-		let { name, description, result, level } = data;
+	// populate(data) {
+	// 	let { name, description, result, level } = data;
 		
-		if (name) {
-			this.name = name;
-		}
-		if (description) {
-			this.description = description;
-		}
-		if (result) {
-			this.result = result;
-		}
-		if (level) {
-			this.level = level;
-		}
-	}
-
-	toString() {
-		return description;
-	}
+	// 	if (name) {
+	// 		this.name = name;
+	// 	}
+	// 	if (description) {
+	// 		this.description = description;
+	// 	}
+	// 	if (result) {
+	// 		this.result = result;
+	// 	}
+	// 	if (level) {
+	// 		this.level = level;
+	// 	}
+	// }
 
 }
 

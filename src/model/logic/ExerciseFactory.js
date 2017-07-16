@@ -10,5 +10,9 @@ export default (classroom, name, description, result, level) => {
 	classroom.exercises.push(exercise);
 	classroom.model.exercises().add(exercise.model);
 
-	return Promise.all([basicDao.save(exercise), basicDao.save(classroom)]);
+	return Promise
+		.all([basicDao.save(exercise), basicDao.save(classroom)])
+		.then(() => {
+			return exercise;
+		});
 }

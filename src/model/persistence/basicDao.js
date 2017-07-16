@@ -1,12 +1,10 @@
-import ModelProxy from '../classes/modelProxy';
-
 class BasicDao {
 
 	save(obj) {
 		const saveOne = (obj) => {
 			return obj.model.save().then((model) => {
 				obj.populate(model.attributes);
-				console.log('Object saved: ' + JSON.stringify(obj));
+				console.log('Object saved: ' + obj.toString());
 			});
 		}
 

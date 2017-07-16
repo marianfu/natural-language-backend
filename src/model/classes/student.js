@@ -1,11 +1,11 @@
 import User from './user';
-import Submission from './submission';
+import { SubmissionModel } from './submission';
 import BaseModel from './baseModel';
 
 const StudentModel = BaseModel.extend({
 	tableName: 'students',
 	submissions: function() {
-		return this.hasMany(Submission);
+		return this.hasMany(SubmissionModel);
 	}
 });
 

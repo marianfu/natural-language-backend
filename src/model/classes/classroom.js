@@ -1,4 +1,5 @@
 import BaseModel from './baseModel';
+import BaseClass from './baseClass';
 import { ProfessorModel } from './professor';
 import { StudentModel } from './student';
 import { ExerciseModel } from './exercise';
@@ -16,9 +17,10 @@ const ClassroomModel = BaseModel.extend({
 	}
 });
 
-class Classroom {
+class Classroom extends BaseClass {
 
 	constructor(name, professor) {
+		super();
 		this.name = name;
 		this.professor = professor;
 		this.students = [];
@@ -29,25 +31,25 @@ class Classroom {
 		});
 	}
 
-	populate(data) {
-		let { id, name, professor, students, exercises } = data;
+	// populate(data) {
+	// 	let { id, name, professor, students, exercises } = data;
 		
-		if (id) {
-			this.id = id;
-		}
-		if (name) {
-			this.name = name;
-		}
-		if (professor) {
-			this.professor = professor();
-		}
-		if (students) {
-			this.students = students();
-		}
-		if (exercises) {
-			this.exercises = exercises();
-		}
-	}
+	// 	if (id) {
+	// 		this.id = id;
+	// 	}
+	// 	if (name) {
+	// 		this.name = name;
+	// 	}
+	// 	if (professor) {
+	// 		this.professor = professor();
+	// 	}
+	// 	if (students) {
+	// 		this.students = students();
+	// 	}
+	// 	if (exercises) {
+	// 		this.exercises = exercises();
+	// 	}
+	// }
 
 	addStudent(student) {
 		this.students.push(student);
@@ -55,10 +57,6 @@ class Classroom {
 
 	addExercise(exercise) {
 		this.exercises.push(exercise);
-	}
-
-	toString() {
-		return this.name + '(Profesor ' + this.professor.lastName + ', ' + this.students.length + ' alumnos)'
 	}
 
 }

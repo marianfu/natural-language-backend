@@ -1,5 +1,5 @@
 -- Create database 'natural_db'
-CREATE DATABASE 'natural_db';
+CREATE DATABASE natural_db;
 
 -- Create user 'natural' with password 'natural'
 CREATE USER 'natural_user'@'localhost' IDENTIFIED BY 'natural';	
