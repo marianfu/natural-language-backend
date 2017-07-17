@@ -19,7 +19,7 @@ class Student extends User {
 	static dbModel() {
 		return StudentModel;
 	}
-
+	
 }
 
 export default Student;

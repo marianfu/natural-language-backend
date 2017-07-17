@@ -16,21 +16,14 @@ class Observation extends BaseClass {
 		this.professor = professor;
 		this.description = description;
 		this.model = new ObservationModel({
-			idProfessor: professor.id,
+			idProfessor: professor ? professor.id : null,
 			description: description
 		});
 	}
 
-	// populate(data) {
-	// 	let { professor, description } = data;
-		
-	// 	if (professor) {
-	// 		this.professor = professor();
-	// 	}
-	// 	if (description) {
-	// 		this.description = description;
-	// 	}
-	// }
+	static dbModel() {
+		return ObservationModel;
+	}
 
 }
 

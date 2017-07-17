@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 class BasicDao {
 
 	save(obj) {
@@ -40,9 +42,14 @@ class BasicDao {
 			modelQuery = modelQuery.forge();
 		}
 
-		return modelQuery.fetch().then((model) => {
-			var obj = new clazz();
-			obj.populate(model.attributes);
+		return modelQuery.fetchAll().then((data) => {
+			let objects = [];
+			 _.each(data.models, function (model) { //I am looping over models using underscore, you can use any loop
+				var obj = new clazz();
+				obj.populate(model.attributes);
+				objects.push(obj);
+	        });
+			return objects;
 		});
 	}
 

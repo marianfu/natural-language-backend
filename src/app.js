@@ -13,7 +13,7 @@ import BasicDao from './model/persistence/basicDao';
 import createSubmission from './model/logic/SubmissionFactory';
 import createExercise from './model/logic/ExerciseFactory';
 
-import { home, exercises, pseudocode } from './routes';
+import { home, classrooms, exercises, observations, submissions, users, pseudocode } from './routes';
 import { addSocketHandlers } from './websocket/handler';
 
 const swaggerDoc = YAML.load('./src/api.yaml');
@@ -42,37 +42,43 @@ swaggerTools.initializeMiddleware(swaggerDoc, (middleware) => {
 
 // Routes
 app.use('/', home);
+app.use('/api/classrooms', classrooms);
 app.use('/api/exercises', exercises);
+app.use('/api/observations', observations);
+app.use('/api/submissions', submissions);
+app.use('/api/users', users);
 app.use('/api/pseudocode', pseudocode);
+app.use('/api/test', test);
 
 // Websocket handlers
 addSocketHandlers(io);
 
-const basicDao = new BasicDao();
+function test() {
+	const basicDao = new BasicDao();
 
+	let students = [
+		new Student('Mariano', 'Furriel'),
+		new Student('Gabriel', 'Rodriguez')
+	];
 
-let students = [
-	new Student('Mariano', 'Furriel'),
-	new Student('Gabriel', 'Rodriguez')
-];
+	let professor = new Professor('Claudio', 'Godio');
 
-let professor = new Professor('Claudio', 'Godio');
+	let classroom;
 
-let classroom;
-
-Promise
-	.all([
-		basicDao.save(students),
-		basicDao.save(professor)
-	])
-	.then(() => {
-		classroom = new Classroom('Tesis I', professor);
-		return basicDao.save(classroom);
-	})
-	.then(() => {
-		createExercise(classroom, 'Exercise 1', 'This is an exercise.', 'This is the result: 42.', 1).then((exercise) => {
-			createSubmission(students[0], exercise, 'This is a solution.').then((submission) => {
-				console.log(submission);
+	Promise
+		.all([
+			basicDao.save(students),
+			basicDao.save(professor)
+		])
+		.then(() => {
+			classroom = new Classroom('Tesis I', professor);
+			return basicDao.save(classroom);
+		})
+		.then(() => {
+			createExercise(classroom, 'Exercise 1', 'This is an exercise.', 'This is the result: 42.', 1).then((exercise) => {
+				createSubmission(students[0], exercise, 'This is a solution.').then((submission) => {
+					console.log(submission);
+				});
 			});
 		});
-	});
+}

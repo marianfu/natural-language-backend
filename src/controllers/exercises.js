@@ -1,11 +1,12 @@
-import { exercises } from '../utils/examples';
+import { getList, getOne } from './utils';
+import Exercise from '../model/classes/exercise';
 
 const getExerciseList = (req, res) => {
-  res.json(exercises);
+	getList(req, res, Exercise);
 };
 
 const getExercise = (req, res) => {
-  res.send('NOT IMPLEMENTED yet');
-}
+	getOne(req, res, Exercise);
+};
 
 export default { getExerciseList, getExercise };

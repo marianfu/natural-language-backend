@@ -18,26 +18,13 @@ class Exercise extends BaseClass {
 			description: description,
 			result: result,
 			level: level,
-			idClassroom: classroom.id
+			idClassroom: classroom ? classroom.id : null
 		});
 	}
 
-	// populate(data) {
-	// 	let { name, description, result, level } = data;
-		
-	// 	if (name) {
-	// 		this.name = name;
-	// 	}
-	// 	if (description) {
-	// 		this.description = description;
-	// 	}
-	// 	if (result) {
-	// 		this.result = result;
-	// 	}
-	// 	if (level) {
-	// 		this.level = level;
-	// 	}
-	// }
+	static dbModel() {
+		return ExerciseModel;
+	}
 
 }
 

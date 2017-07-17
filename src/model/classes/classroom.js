@@ -27,36 +27,12 @@ class Classroom extends BaseClass {
 		this.exercises = [];
 		this.model = new ClassroomModel({
 			name: name,
-			idProfessor: professor.id
+			idProfessor: professor ? professor.id : null
 		});
 	}
 
-	// populate(data) {
-	// 	let { id, name, professor, students, exercises } = data;
-		
-	// 	if (id) {
-	// 		this.id = id;
-	// 	}
-	// 	if (name) {
-	// 		this.name = name;
-	// 	}
-	// 	if (professor) {
-	// 		this.professor = professor();
-	// 	}
-	// 	if (students) {
-	// 		this.students = students();
-	// 	}
-	// 	if (exercises) {
-	// 		this.exercises = exercises();
-	// 	}
-	// }
-
-	addStudent(student) {
-		this.students.push(student);
-	}
-
-	addExercise(exercise) {
-		this.exercises.push(exercise);
+	static dbModel() {
+		return ClassroomModel;
 	}
 
 }

@@ -14,11 +14,6 @@ const SubmissionModel = BaseModel.extend({
 });
 
 class Submission extends BaseClass {
-
-	//	Table name
-	get tableName() {
-		return 'submissions';
-	}
 	
 	constructor(student, exercise, solution) {
 		super();
@@ -27,37 +22,14 @@ class Submission extends BaseClass {
 		this.approved = false;
 		this.observations = [];
 		this.model = new SubmissionModel({
-			idStudent: student.id,
-			idExercise: exercise.id,
+			idStudent: student ? student.id : null,
+			idExercise: exercise ? exercise.id : null,
 			solution: solution
 		});
 	}
 
-	// populate(data) {
-	// 	let { exercise, solution, approved, observations } = data;
-		
-	// 	if (exercise) {
-	// 		this.exercise = exercise();
-	// 	}
-	// 	if (solution) {
-	// 		this.solution = solution();
-	// 	}
-	// 	if (approved) {
-	// 		this.approved = approved;
-	// 	}
-	// 	if (observations) {
-	// 		this.observations = observations();
-	// 	}
-	// }
-
-	approve() {
-		this.approved = true;
-	}
-
-	observe(professor, description) {
-		let observation = new Observation(professor, description);
-		this.observations.push(observation);
-		return observation;
+	static dbModel() {
+		return SubmissionModel;
 	}
 
 }

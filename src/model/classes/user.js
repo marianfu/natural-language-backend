@@ -10,31 +10,6 @@ class User extends BaseClass {
 		this.model = model;
 	}
 
-	// populate(data) {
-	// 	let {id, role, firstName, lastName} = data;
-		
-	// 	if (id) {
-	// 		this.id = id;
-	// 	}
-	// 	if (role) {
-	// 		this.role = role;
-	// 	}
-	// 	if (firstName) {
-	// 		this.firstName = firstName;
-	// 	}		
-	// 	if (lastName) {
-	// 		this.lastName = lastName;
-	// 	}
-	// }
-
-	// get firstName() {
-	// 	return model.get('firstName');
-	// }
-
-	// get lastName() {
-	// 	return model.get('lastName');
-	// }
-
 }
 
 export default User;

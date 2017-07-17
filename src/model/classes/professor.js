@@ -11,10 +11,10 @@ class Professor extends User {
 		super('PROFESSOR', firstName, lastName, new ProfessorModel({firstName, lastName}));
 	}
 
-	// Transient methods
-	observe(submission, description) {
-		submission.observe(this, description);
+	static dbModel() {
+		return ProfessorModel;
 	}
+	
 }
 
 export default Professor;
