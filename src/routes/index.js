@@ -1,9 +1,10 @@
+import home from './home';
 import classrooms from './classrooms';
 import exercises from './exercises';
 import observations from './observations';
+import pseudocode from './pseudocode'; 
 import submissions from './submissions';
 import users from './users';
-import home from './home';
-import pseudocode from './pseudocode'; 
+import test from './test';
 
-export { home, exercises, classrooms, observations, submissions, users, pseudocode };
+export { home, classrooms, exercises, observations, submissions, users, pseudocode, test };

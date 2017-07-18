@@ -7,6 +7,7 @@ class BasicDao {
 			return obj.model.save().then((model) => {
 				obj.populate(model.attributes);
 				console.log('Object saved: ' + obj.toString());
+				return obj;
 			});
 		}
 

@@ -11,12 +11,13 @@ const ObservationModel = BaseModel.extend({
 
 class Observation extends BaseClass {
 
-	constructor(professor, description) {
+	constructor(submission, professor, description) {
 		super();
 		this.professor = professor;
 		this.description = description;
 		this.model = new ObservationModel({
 			idProfessor: professor ? professor.id : null,
+			idSubmission: submission ? submission.id : null,
 			description: description
 		});
 	}
