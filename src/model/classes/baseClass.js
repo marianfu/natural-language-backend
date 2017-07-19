@@ -10,7 +10,7 @@ class BaseClass {
 			_self,
 			(key, value) => {
 				if (key === 'model') {
-					return;
+					return undefined;
 				}
 				return value;
 			},

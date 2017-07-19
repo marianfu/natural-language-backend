@@ -1,15 +1,30 @@
 import BasicDao from '../persistence/basicDao';
 import Observation from '../classes/observation';
+import Professor from '../classes/professor';
+import Submission from '../classes/submission';
 
-export default (submission, professor, description) => {
+export default (idSubmission, idProfessor, description) => {
 	const basicDao = new BasicDao();
 
-	let observation = new Observation(submission, professor, description);
+	return basicDao.fetch(Professor, {
+		where: [['id', idProfessor]]
+	}).then((professors) => {
+		if (!professors || professors.length === 0) {
+			throw new Error('No professor found with id ' + idProfessor);
+		}
 
-	submission.observations.push(observation);
-	submission.model.observations().add(observation.model);
+		let professor = professors[0];
 
-	return Promise.all([basicDao.save(observation), basicDao.save(submission)]).then(() => {
-		return observation;
-	});
+		return basicDao.fetch(Submission, {
+			where: [['id', idSubmission]]
+		}).then((submissions) => {
+			if (!submissions || submissions.length === 0) {
+				throw new Error('No submission found with id ' + idSubmission);
+			}
+
+			let submission = submissions[0];
+
+			return basicDao.save(new Observation(submission, professor, description));
+		});
+	})
 }

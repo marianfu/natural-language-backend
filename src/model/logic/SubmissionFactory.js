@@ -1,15 +1,30 @@
 import BasicDao from '../persistence/basicDao';
+import Exercise from '../classes/exercise';
+import Student from '../classes/student';
 import Submission from '../classes/submission';
 
-export default (user, exercise, solution) => {
+export default (idStudent, idExercise, solution) => {
 	const basicDao = new BasicDao();
 
-	let submission = new Submission(user, exercise, solution);
+	return basicDao.fetch(Student, {
+		where: [['id', idStudent]]
+	}).then((students) => {
+		if (!students || students.length === 0) {
+			throw new Error('No student found with id ' + idStudent);
+		}
 
-	user.submissions.push(submission);
-	user.model.submissions().add(submission.model);
+		let student = students[0];
 
-	return Promise.all([basicDao.save(submission), basicDao.save(user)]).then(() => {
-		return submission;
-	});
+		return basicDao.fetch(Exercise, {
+			where: [['id', idExercise]]
+		}).then((exercises) => {
+			if (!exercises || exercises.length === 0) {
+				throw new Error('No exercise found with id ' + idExercise);
+			}
+
+			let exercise = exercises[0];
+
+			return basicDao.save(new Submission(student, exercise, solution));
+		});
+	})
 }

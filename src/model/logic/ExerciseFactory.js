@@ -2,17 +2,16 @@ import BasicDao from '../persistence/basicDao';
 import Exercise from '../classes/exercise';
 import Classroom from '../classes/classroom';
 
-export default (classroom, name, description, result, level) => {
+export default (idClassroom, name, description, result, level) => {
 	const basicDao = new BasicDao();
 
-	let exercise = new Exercise(classroom, name, description, result, level);
+	return basicDao.fetch(Classroom, {
+		where: [['id', idClassroom]]
+	}).then((classrooms) => {
+		if (!classrooms || classrooms.length === 0) {
+			throw new Error('No classroom found with id ' + idClassroom);
+		}
 
-	classroom.exercises.push(exercise);
-	classroom.model.exercises().add(exercise.model);
-
-	return Promise
-		.all([basicDao.save(exercise), basicDao.save(classroom)])
-		.then(() => {
-			return exercise;
-		});
+		return basicDao.save(new Exercise(classrooms[0], name, description, result, level));
+	});
 }

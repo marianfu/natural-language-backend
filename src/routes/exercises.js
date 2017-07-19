@@ -7,6 +7,8 @@ router.get('/', controller.getExerciseList);
 
 router.get('/:id', controller.getExercise);
 
+router.post('/', controller.saveExercise);
+
 export default router;
 
 

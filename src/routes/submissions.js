@@ -7,6 +7,8 @@ router.get('/', controller.getSubmissionList);
 
 router.get('/:id', controller.getSubmission);
 
+router.post('/', controller.saveSubmission);
+
 export default router;
 
 

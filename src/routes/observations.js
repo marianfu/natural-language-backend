@@ -7,6 +7,8 @@ router.get('/', controller.getObservationList);
 
 router.get('/:id', controller.getObservation);
 
+router.post('/', controller.saveObservation);
+
 export default router;
 
 
