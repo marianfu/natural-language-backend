@@ -1,6 +1,6 @@
 import { getList, getOne } from './utils';
 import Classroom from '../model/classes/classroom';
-import createClassroom from '../model/logic/classroomFactory';
+import createClassroom from '../model/logic/factories/classroomFactory';
 
 const getClassroomList = (req, res) => {
 	getList(req, res, Classroom);

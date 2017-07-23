@@ -11,8 +11,8 @@ const StudentModel = BaseModel.extend({
 
 class Student extends User {
 
-	constructor(firstName, lastName) {
-		super('STUDENT', firstName, lastName, new StudentModel({firstName, lastName}));
+	constructor(firstName, lastName, email, password) {
+		super('STUDENT', firstName, lastName, email, password, new StudentModel({firstName, lastName, email, password}));
 		this.submissions = [];
 	}
 

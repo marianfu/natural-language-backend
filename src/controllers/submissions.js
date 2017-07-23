@@ -1,5 +1,5 @@
 import { getList, getOne } from './utils';
-import createSubmission from '../model/logic/submissionFactory';
+import createSubmission from '../model/logic/factories/submissionFactory';
 import Submission from '../model/classes/submission';
 
 const getSubmissionList = (req, res) => {

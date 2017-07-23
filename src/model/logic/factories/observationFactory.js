@@ -1,7 +1,7 @@
-import BasicDao from '../persistence/basicDao';
-import Observation from '../classes/observation';
-import Professor from '../classes/professor';
-import Submission from '../classes/submission';
+import BasicDao from '../../persistence/basicDao';
+import Observation from '../../classes/observation';
+import Professor from '../../classes/professor';
+import Submission from '../../classes/submission';
 
 export default (idSubmission, idProfessor, description) => {
 	const basicDao = new BasicDao();

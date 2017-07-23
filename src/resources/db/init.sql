@@ -15,6 +15,7 @@ CREATE TABLE professors (
 	id bigint(19) not null auto_increment,
 	first_name varchar(500) not null,
 	last_name varchar(500) not null,
+	email varchar(500) not null,
 	password varchar(500),
 	primary key(id)
 );
@@ -23,6 +24,7 @@ CREATE TABLE students (
 	id bigint(19) not null auto_increment,
 	first_name varchar(500) not null,
 	last_name varchar(500) not null,
+	email varchar(500) not null,
 	password varchar(500),
 	primary key(id)	
 );

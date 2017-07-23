@@ -7,8 +7,8 @@ const ProfessorModel = BaseModel.extend({
 
 class Professor extends User {
 
-	constructor(firstName, lastName) {
-		super('PROFESSOR', firstName, lastName, new ProfessorModel({firstName, lastName}));
+	constructor(firstName, lastName, email, password) {
+		super('PROFESSOR', firstName, lastName, email, password, new ProfessorModel({firstName, lastName, email, password}));
 	}
 
 	static dbModel() {

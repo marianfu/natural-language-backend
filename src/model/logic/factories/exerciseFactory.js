@@ -1,6 +1,6 @@
-import BasicDao from '../persistence/basicDao';
-import Exercise from '../classes/exercise';
-import Classroom from '../classes/classroom';
+import BasicDao from '../../persistence/basicDao';
+import Exercise from '../../classes/exercise';
+import Classroom from '../../classes/classroom';
 
 export default (idClassroom, name, description, result, level) => {
 	const basicDao = new BasicDao();

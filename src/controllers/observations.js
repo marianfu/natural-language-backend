@@ -1,5 +1,5 @@
 import { getList, getOne } from './utils';
-import createObservation from '../model/logic/observationFactory';
+import createObservation from '../model/logic/factories/observationFactory';
 import Observation from '../model/classes/observation';
 
 const getObservationList = (req, res) => {

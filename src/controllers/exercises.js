@@ -1,5 +1,5 @@
 import { getList, getOne } from './utils';
-import createExercise from '../model/logic/exerciseFactory';
+import createExercise from '../model/logic/factories/exerciseFactory';
 import Exercise from '../model/classes/exercise';
 
 const getExerciseList = (req, res) => {

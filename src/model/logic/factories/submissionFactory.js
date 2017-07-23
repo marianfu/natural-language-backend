@@ -1,7 +1,7 @@
-import BasicDao from '../persistence/basicDao';
-import Exercise from '../classes/exercise';
-import Student from '../classes/student';
-import Submission from '../classes/submission';
+import BasicDao from '../../persistence/basicDao';
+import Exercise from '../../classes/exercise';
+import Student from '../../classes/student';
+import Submission from '../../classes/submission';
 
 export default (idStudent, idExercise, solution) => {
 	const basicDao = new BasicDao();

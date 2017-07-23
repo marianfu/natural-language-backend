@@ -3,8 +3,8 @@ import Professor from '../model/classes/professor';
 import Exercise from '../model/classes/exercise';
 import Classroom from '../model/classes/classroom';
 import BasicDao from '../model/persistence/basicDao';
-import createSubmission from '../model/logic/SubmissionFactory';
-import createExercise from '../model/logic/ExerciseFactory';
+import createSubmission from '../model/logic/factories/SubmissionFactory';
+import createExercise from '../model/logic/factories/ExerciseFactory';
 
 const test = (req, res) => {
 	const basicDao = new BasicDao();
