@@ -32,6 +32,11 @@ app.set('json spaces', 2);
 
 // Middlewares
 app.use(bodyParser.json());
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(logger);
 app.use(expressSession({ secret: 'keyboard cat', resave: false, saveUninitialized: false }));
